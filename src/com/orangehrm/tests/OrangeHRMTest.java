@@ -67,9 +67,9 @@ public class OrangeHRMTest {
     
     @Test(priority = 4)
     public void logoutTest() {
-    	Actions act = new Actions(driver);
-  	  act.moveToElement(driver.findElement(By.className("oxd-userdropdown-tab"))).build().perform();
-       driver.findElement(By.linkText("Logout")).click();
+    	driver.findElement(By.className("oxd-userdropdown-tab")).click();
+		
+		driver.findElement(By.linkText("Logout")).click();
        
     }
 
