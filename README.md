@@ -1,5 +1,5 @@
 # Omnify_OrangeHRMAutomation
- Assignment for Intern Qa
+ Assignment for  Qa
 
  # Selenium Page Object Model Project (Without Maven)
 
