@@ -12,7 +12,7 @@ public class PIMPage {
     By addEmployeeButton =By.xpath("//button[@type=\"button\" and @class='oxd-button oxd-button--medium oxd-button--secondary']");
     By firstName = By.name("firstName");
     By lastName = By.name("lastName");
-    By saveButton = By.xpath("//button[@type='submit']");
+    By saveButton = By.xpath("//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[2]/button[2]");
     
     By employeeSearch = By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/div/div/input");
     By Search = By.xpath("//button[@type='submit']");
