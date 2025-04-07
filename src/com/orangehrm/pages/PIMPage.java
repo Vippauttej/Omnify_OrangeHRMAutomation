@@ -1,5 +1,7 @@
 package com.orangehrm.pages;
 import java.time.Duration;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -32,21 +34,30 @@ public class PIMPage {
     }
 
 	
-    public boolean verifyEmployee(String name) throws InterruptedException {
-        driver.findElement(employeeSearch).clear();
-        driver.findElement(employeeSearch).sendKeys(name);
-        driver.findElement(By.xpath("//button[@type=\"submit\"]")).click();
+    
+    public boolean verifyEmployee(String expectedName) {
+        try {
+            driver.findElement(employeeSearch).clear();
+            driver.findElement(employeeSearch).sendKeys(expectedName);
+            driver.findElement(By.xpath("//button[@type='submit']")).click();
+            Thread.sleep(2000); // OR use WebDriverWait
 
-        
-        
-        String expname = name;
-		  
-		  WebElement actname = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[1]/div/div[3]/div")) ;
-		  
-		  String act = actname.getText();
-		  Assert.assertEquals(act, expname);
-		return false;
+            List<WebElement> rows = driver.findElements(By.xpath("//div[@class='oxd-table-body']//div[@role='row']"));
+            for (WebElement row : rows) {
+                String actualName = row.findElement(By.xpath(".//div[3]")).getText().trim();
+                System.out.println("Found: " + actualName); // Debug log
+                if (actualName.equalsIgnoreCase(expectedName)) {
+                    return true;
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
+
+
 
 
 }
